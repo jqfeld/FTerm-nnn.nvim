@@ -2,8 +2,6 @@ local term = require("FTerm.terminal")
 
 local M = {}
 
-local last_line = "last_line"
-
 -- Return true if file exists and is readable.
 function file_exists(path)
   local file = io.open(path, "rb")
