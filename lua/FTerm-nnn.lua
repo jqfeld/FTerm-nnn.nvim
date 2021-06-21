@@ -19,11 +19,14 @@ local nnn = term:new():setup({
                 vim.cmd(split_strategy .." "..vim.fn.readfile("/tmp/nvim_fterm_nnn_pick")[1])
             end
         end
-
-        }
+        },
+    filetype = "FTerm-nnn",
 })
 
-
+-- clear the <esc> key in the terminal
+-- this is to allow to use vim for renaming files, even if the user has set
+-- a map for the <esc> key
+vim.cmd("au FileType FTerm-nnn tnoremap <buffer> <esc> <esc>")
 
 function M.nnn_toggle()
     split_strategy = "e"
