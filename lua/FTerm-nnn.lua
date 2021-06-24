@@ -1,6 +1,12 @@
 local term = require("FTerm.terminal")
 
+local config = require("FTerm-nnn.config")
+
 local M = {}
+
+function M.setup(opts)
+    config:setup(opts)
+end
 
 -- Return true if file exists and is readable.
 function file_exists(path)
@@ -12,7 +18,7 @@ end
 local split_strategy = "e"
 
 local nnn = term:new():setup({
-    cmd = "nnn -p /tmp/nvim_fterm_nnn_pick",
+    cmd = config['env'] .. " nnn -a -p /tmp/nvim_fterm_nnn_pick",
     term_opts = {
         on_exit = function(id, data, event)
             if file_exists("/tmp/nvim_fterm_nnn_pick") then
@@ -42,6 +48,7 @@ function M.nnn_hs_toggle()
     split_strategy = "sp"
     return nnn:toggle()
 end
+
 
 return M
 
